@@ -2,7 +2,7 @@ import React from "react";
 
 export function getRandomNumber  (stringLength:number) {return Math.floor(Math.random() * stringLength)}
 
-export function getRandomName(maxSyllabus: number, setNewLabel:React.Dispatch<any>):void{
+export function getRandomName(maxSyllabus: number):string{
     const alphabet:string = 'abcdefghijklmnopqrstuvwxyz'
     const vowels:string = 'aeiou'
 
@@ -13,7 +13,8 @@ export function getRandomName(maxSyllabus: number, setNewLabel:React.Dispatch<an
         const randomVowel:string = vowels[getRandomNumber(vowels.length)]
         randomName = randomName +  randomAlphabetLetter + randomVowel
     }
-    setNewLabel(randomName)
+    // setNewLabel(randomName)
+    return randomName
 }
 
 export function getRandomColor(setNewColor:React.Dispatch<any>):void {

@@ -1,28 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './Body.css';
 import Button from '../Button/Button'
-import {getRandomColor, getRandomName, getRandomNumber} from "./Body.utils";
+import { getRandomName, getRandomNumber} from "./Body.utils";
 import NameService from "../../services/NameService";
-
+import randomColor from "randomcolor";
 
 function Body():JSX.Element {
-    let buttonLabel:string = 'APERTE O BOTÃO';
-    let buttonColor:string = 'blue'
+    let randomLabel:string = 'GERE UM NOME ALEATÓRIO';
+    let topLabel:string = 'GERE UM NOME TOP';
 
-    const [newLabel, setNewLabel] = useState<string>(buttonLabel)
-    const [newColor, setNewColor] = useState<string>(buttonColor)
-    const [newName, setNewName] = useState<string>('')
+    const [newRandomName, setNewRandomName] = useState<string>(randomLabel)
+    const [newName, setNewName] = useState<string>(topLabel)
 
-
-
-
-    const retrieveName = ():any => {
-        NameService.getAll()
-            .then((response: any) => {
-                // setTutorials(response.data);
-                const name = response.data[0].res[getRandomNumber(response.data[0].res.length)].nome
-                console.log(name);
-                console.log(response.data[0].res)
+    const setTopName = ():any => {
+         NameService.getAll()
+            .then( (response: any) => {
+                const name =  response.data[0].res[getRandomNumber(response.data[0].res.length)].nome
                 setNewName(name)
             })
             .catch((e: Error) => {
@@ -30,34 +23,29 @@ function Body():JSX.Element {
             })
     };
 
-    useEffect(() => {
-        retrieveName();
-    }, []);
-
-
     return (
         <div className="App-body"
-             style={{backgroundColor: newColor}}>
+             style={{backgroundColor: randomColor()}}>
             <br/>
             <br/>
             <br/>
             <Button
                 border = "none"
-                color  ="pink"
-                onClick = {() => getRandomName(3, setNewLabel)}
+                color  = {randomColor()}
+                onClick = {() => {setNewRandomName(getRandomName(3)); setNewName(topLabel);}}
                 radius = "50%"
                 height = "400px"
                 width = "400px"
                 fontSize = "5rem"
-                children = {newLabel.toUpperCase()}
+                children = {newRandomName.toUpperCase()}
                 />
             <br/>
             <br/>
             <br/>
             <Button
                 border = "none"
-                color  ="red"
-                onClick = {() => retrieveName()}
+                color  = {randomColor()}
+                onClick = {() => {setTopName(); setNewRandomName(randomLabel);}}
                 radius = "50%"
                 height = "400px"
                 width = "400px"

@@ -3,7 +3,7 @@ import './Header.css';
 
 const headerText ={
     title:"Aperte o Botão para gerar um nome",
-    subtitle:"Por enquanto só gera letras"
+    subtitle:"Agora com cores aleatórias também"
 }
 
 function Header() {
