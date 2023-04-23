@@ -1,36 +1,26 @@
 import React, {useState} from "react";
 import './Body.css';
 import Button from '../Button/Button'
+import {getRandomColor, getRandomName} from "./Body.utils";
 
 
 function Body():JSX.Element {
     let buttonLabel:string = 'APERTE O BOTÃO';
     let buttonColor:string = 'blue'
 
-
-
     const [newLabel, setNewLabel] = useState<string>(buttonLabel)
-
     const [newColor, setNewColor] = useState<string>(buttonColor)
-
-    const updateBody = (): void => {
-        const alphabet:string = "abcdefghijklmnopqrstuvwxyz"
-        const randomCharacter:string = alphabet[Math.floor(Math.random() * alphabet.length)]
-        setNewLabel(randomCharacter )
-
-        const color:string[] = ['yellow', 'blue','red', 'green', 'black', 'white', 'brown']
-        console.log(Math.floor(Math.random() * color.length))
-        setNewColor(color[Math.floor(Math.random() * color.length)])
-    }
 
     return (
         <div className="App-body"
              style={{backgroundColor: newColor}}>
-
+            <br/>
+            <br/>
+            <br/>
             <Button
                 border = "none"
                 color  ="pink"
-                onClick = {() => updateBody()}
+                onClick = {() => getRandomName(3, setNewLabel)}
                 radius = "50%"
                 height = "400px"
                 width = "400px"
@@ -40,6 +30,16 @@ function Body():JSX.Element {
             <br/>
             <br/>
             <br/>
+            <Button
+                border = "none"
+                color  ="red"
+                onClick = {() => getRandomColor(setNewColor)}
+                radius = "50%"
+                height = "400px"
+                width = "400px"
+                fontSize = "4rem"
+                children = {newLabel.toUpperCase()}
+            />
         </div>
     );
 }
