@@ -1,16 +1,16 @@
 import React from "react";
 import './Header.css';
 
-type HeaderProps  ={
-    title: string;
-    subtitle: string;
+const headerText ={
+    title:"Aperte o Botão para gerar um nome",
+    subtitle:"Por enquanto só gera letras"
 }
 
-function Header(props: HeaderProps) {
+function Header() {
     return (
         <div className="App-header">
-            <h1>{props.title}</h1>
-            <p>{props.subtitle}</p>
+            <h1>{headerText.title}</h1>
+            <p>{headerText.subtitle}</p>
         </div>
     );
 }

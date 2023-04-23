@@ -1,4 +1,5 @@
 import React from "react";
+import './Button.css';
 
 interface ButtonProps {
     border: string;
@@ -8,7 +9,9 @@ interface ButtonProps {
     onClick: () => void;
     radius: string
     width: string;
+    fontSize: string
 }
+
 
 const Button: React.FC<ButtonProps> = ({
                      border,
@@ -17,17 +20,21 @@ const Button: React.FC<ButtonProps> = ({
                      height,
                      onClick,
                      radius,
-                     width
+                     width,
+                     fontSize
                  }) => {
     return (
         <button
             onClick={onClick}
+
             style={{
                 backgroundColor: color,
                 border,
                 borderRadius: radius,
                 height,
-                width
+                width,
+                fontSize
+
             }}
         >
             {children}

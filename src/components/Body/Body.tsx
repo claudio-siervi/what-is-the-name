@@ -1,37 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import './Body.css';
 import Button from '../Button/Button'
 
-type BodyProps = {
-    message: string;
-}
 
-function Body(props:BodyProps) {
-    let buttonLabel = 'My Label';
-    const updateButtonLabel = (newLabel: string): string => {
-        buttonLabel=newLabel
-        return newLabel
+function Body():JSX.Element {
+    let buttonLabel:string = 'APERTE O BOTÃO';
+    let buttonColor:string = 'blue'
+
+
+
+    const [newLabel, setNewLabel] = useState<string>(buttonLabel)
+
+    const [newColor, setNewColor] = useState<string>(buttonColor)
+
+    const updateBody = (): void => {
+        const alphabet:string = "abcdefghijklmnopqrstuvwxyz"
+        const randomCharacter:string = alphabet[Math.floor(Math.random() * alphabet.length)]
+        setNewLabel(randomCharacter )
+
+        const color:string[] = ['yellow', 'blue','red', 'green', 'black', 'white', 'brown']
+        console.log(Math.floor(Math.random() * color.length))
+        setNewColor(color[Math.floor(Math.random() * color.length)])
     }
-    return (
-        <div className="App-body">
 
-            <h1>Aperte o Botão para gerar um nome</h1>
-            <br/>
+    return (
+        <div className="App-body"
+             style={{backgroundColor: newColor}}>
 
             <Button
-                border="none"
-                color="pink"
-                height = "200px"
-                onClick={() => updateButtonLabel('New Label')}
+                border = "none"
+                color  ="pink"
+                onClick = {() => updateBody()}
                 radius = "50%"
-                width = "200px"
-                children = {buttonLabel}
+                height = "400px"
+                width = "400px"
+                fontSize = "5rem"
+                children = {newLabel.toUpperCase()}
                 />
             <br/>
             <br/>
-            {/*<h1>{button_label}</h1>*/}
             <br/>
-
         </div>
     );
 }
